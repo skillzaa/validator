@@ -1,36 +1,65 @@
-const ArrayOfObjects = require("../src/index");
+const Val = require("../src/index");
+const val = new Val();
+console.log(val);
 
-const aoo = new ArrayOfObjects();
-
-const a = aoo.add("first");
-const b = aoo.add("second");
-
-test('add first', () => {
-expect(typeof a).toBe("object"); 
+test('isNumber-01', () => {
+const b = val.isNumber(4);
+expect(b).toBeTruthy(); 
+});
+test('isNumber-02', () => {
+const b = val.isNumber("4");
+expect(b).toBeFalsy(); 
+});
+test('isNumber-02-B', () => {
+const b = val.isNumber(true);
+expect(b).toBeFalsy(); 
+});
+test('isNumber-02-C', () => {
+const b = val.isNumber({});
+expect(b).toBeFalsy(); 
 });
 
-test('add second', () => {
-expect(typeof b).toBe("object"); 
-});
-
-test('length = 2 ', () => {
-expect(aoo.length).toEqual(2); 
-});
-
-test('add non unique name to throw error', () => {
+test('isNumber-03', () => {
     expect(() => {
-        aoo.add("first");     
-  }).toThrow('Please Provide a unique and valid string name for the object');
+      val.isNumber("4",true);
+    }).toThrow('This is not a Number');
+});
+///////////////////////////////////////////////////
+///////////////////////////////////////////////////
+///////////////////////////////////////////////////
+test('isInteger-01', () => {
+const b = val.isInteger(4);
+expect(b).toBeTruthy(); 
+});
+test('isInteger-02', () => {
+const b = val.isInteger(4.55);
+expect(b).toBeFalsy(); 
+});
+test('isInteger-02-B', () => {
+const b = val.isInteger(true);
+expect(b).toBeFalsy(); 
+});
+test('isInteger-02-C', () => {
+const b = val.isInteger(0.1);
+expect(b).toBeFalsy(); 
+});
+test('isInteger-02-D', () => {
+const b = val.isInteger(7.00);//7.00 = 7
+expect(b).toBeTruthy(); 
+});
+
+test('isNumber-03', () => {
+    expect(() => {
+      val.isInteger(5.420,true);
+    }).toThrow('This is not an Integer');
+});
+///////////////////////////////////////////////////
+///////////////////////////////////////////////////
+///////////////////////////////////////////////////
+test('isSmaller-01', () => {
+    expect(() => {
+      val.isSmaller(5,2,true);
+    }).toThrow('First Number is not smaller than the second number');
 });
 
     
-
-test('setAttr', () => {
-const ans = aoo.setAttr("first","value of first");
-expect(ans).toBe("value of first"); 
-});    
-
-test('getAttr', () => {
-const ans = aoo.getAttr("first");
-expect(ans).toBe("value of first"); 
-});    

@@ -1,75 +1,87 @@
 "use strict";
-/**
- * 1--every objects must have a unique "name"  field
- * 2--every OBJECT MUST HAVE "value" field.
- */
-// const IItem = require("IItem");
-module.exports = class ArrayOfObjects {
+module.exports = class Validator {
     constructor() {
-        this.data = [];
-    }
-    add(name) {
-        if (this.isUnique(name) === true) {
-            const a = {};
-            a.name = name;
-            this.data.push(a);
-            return a;
+        this.throwExceptionFlag = false;
+    } //const
+    isNumber(no, shout = false, message = "This is not a Number") {
+        //if (data === parseInt(data, 10))
+        if ((typeof no) != "number") {
+            if (shout === true) {
+                throw new Error(message);
+            }
+            else {
+                return false;
+            }
         }
         else {
-            throw new Error("Please Provide a unique and valid string name for the object");
+            return true;
         }
     }
-    isUnique(name) {
-        if (typeof name == "undefined") {
+    isInteger(no, shout = false, message = "This is not an Integer") {
+        if (Number.isInteger(no) === false) {
+            if (shout === true) {
+                throw new Error(message);
+            }
+            else {
+                return false;
+            }
+        }
+        else {
+            return true;
+        }
+    }
+    isSmaller(smaller, bigger, shout = false, message = "First Number is not smaller than the second number") {
+        if (bigger < smaller) {
+            if (shout === true) {
+                throw new Error(message);
+            }
+            else {
+                return false;
+            }
+        }
+        else {
+            return true;
+        }
+    } //fn
+    wholeNumber(no) {
+        return Number(no.toFixed(0));
+    }
+    isString(str, shout = false, message = "This value is not string") {
+        if (typeof str === 'string') {
+            return true;
+        }
+        else if (shout === true) {
+            throw new Error(message);
+        }
+        else {
             return false;
         }
-        let uniqueOrNot = true;
-        for (let idx = 0; idx < this.data.length; idx++) {
-            const element = this.data[idx];
-            if (element.name === name) {
-                uniqueOrNot = false;
+    }
+    isBoolean(b, shout = false, message = "This value is not boolean") {
+        if (typeof b === 'boolean') {
+            return true;
+        }
+        else if (shout === true) {
+            throw new Error(message);
+        }
+        else {
+            return false;
+        }
+    }
+    isSNB(snb, shout = false, message = "This value is not boolean or string or number") {
+        const isString = this.isString(snb, false);
+        const isBoolean = this.isBoolean(snb, false);
+        const isNumber = this.isNumber(snb, false);
+        if (isString == false && isBoolean == false && isNumber == false) {
+            if (shout === true) {
+                throw new Error(message);
+            }
+            else {
+                return false;
             }
         }
-        return uniqueOrNot;
-    }
-    get length() {
-        return this.data.length;
-    }
-    getItem(name) {
-        for (let idx = 0; idx < this.data.length; idx++) {
-            if (this.data[idx].name === name) {
-                return this.data[idx];
-            }
+        else {
+            return true;
         }
-        return false;
-    } //.....................
-    getAttr(name, field = "value") {
-        for (let idx = 0; idx < this.data.length; idx++) {
-            const thisName = this.data[idx].name;
-            if (thisName == name) {
-                return this.data[idx][field];
-            }
-        }
-        return false;
     }
-    setAttr(name, value, field = "value") {
-        for (let idx = 0; idx < this.data.length; idx++) {
-            if (this.data[idx].name == name) {
-                this.data[idx][field] = value;
-                return this.data[idx][field];
-            }
-        }
-        return true;
-    } //......
-    getObjectsByName(argumentsRequired = []) {
-        const ret = [];
-        this.data.forEach(bd => {
-            argumentsRequired.forEach(ag => {
-                if (ag == bd.name) {
-                    ret.push(bd);
-                }
-            });
-        });
-        return ret;
-    }
-};
+}; //class
