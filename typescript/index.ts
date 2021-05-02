@@ -41,6 +41,7 @@ isSmaller(smaller:number,bigger:number,shout=false,message="First Number is not 
     }
 }//fn
 wholeNumber(no:number):number{
+    this.isNumber(no,true);
 return Number(no.toFixed(0));
 }
 isString(str:string,shout=false,message="This value is not string"){

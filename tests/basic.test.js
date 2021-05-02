@@ -1,6 +1,6 @@
 const Val = require("../src/index");
 const val = new Val();
-console.log(val);
+// console.log(val);
 
 test('isNumber-01', () => {
 const b = val.isNumber(4);
@@ -61,5 +61,9 @@ test('isSmaller-01', () => {
       val.isSmaller(5,2,true);
     }).toThrow('First Number is not smaller than the second number');
 });
-
+test('isSmaller-02', () => {
+  const b = val.isSmaller(2,5,true);//7.00 = 7
+  expect(b).toBeTruthy(); 
+  });
+  
     

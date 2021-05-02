@@ -44,6 +44,7 @@ module.exports = class Validator {
         }
     } //fn
     wholeNumber(no) {
+        this.isNumber(no, true);
         return Number(no.toFixed(0));
     }
     isString(str, shout = false, message = "This value is not string") {
