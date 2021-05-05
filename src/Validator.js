@@ -1,7 +1,5 @@
-"use strict";
-module.exports = class Validator {
+export default class Validator {
     constructor() {
-        this.throwExceptionFlag = false;
     } //const
     isNumber(no, shout = false, message = "This is not a Number") {
         //if (data === parseInt(data, 10))
@@ -43,9 +41,9 @@ module.exports = class Validator {
             return true;
         }
     } //fn
-    wholeNumber(no) {
-        this.isNumber(no, true);
-        return Number(no.toFixed(0));
+    wholeNumber(no, shout = false) {
+        this.isNumber(no, shout);
+        return Number(Math.round(no));
     }
     isString(str, shout = false, message = "This value is not string") {
         if (typeof str === 'string') {
@@ -85,4 +83,4 @@ module.exports = class Validator {
             return true;
         }
     }
-}; //class
+} //class

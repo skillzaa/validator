@@ -1,9 +1,11 @@
 //import { terser } from "rollup-plugin-terser";
 export default {
-	input: 'src/index.js',
+	input: 'src/Validator.js',
 //	plugins: [terser()],
 	output: {
-	  file: 'dist/index.js',
-	  format: 'cjs',
+	  file: 'dist/Validator.js',
+	//   file: 'dist/ValidatorCjs.js',
+	  format: 'es',
+	//   format: 'cjs',
 	}
   };

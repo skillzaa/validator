@@ -1,9 +1,10 @@
 {
-  "name": "validator",
-  "version": "0.0.1",
-  "description": "",
-  "main": "./src/index.js",
+  "name": "validator99",
+  "version": "1.0.0",
+  "description": "Validates arguments passed to a function or an object.",
+  "main": "./dist/Validator.js",
   "type": "module",
+  "types": "./dist/Validator.d.ts",
   "scripts": {
     "dist": "rollup -c",
     "test": "jest"
@@ -18,6 +19,6 @@
   "dependencies": {},
   "repository": {
     "type": "git",
-    "url": "https://github.com/skillzaa/arrayofobjects.git"
+    "url": "https://github.com/skillzaa/validator.git"
   }
 }

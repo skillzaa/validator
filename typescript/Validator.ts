@@ -1,9 +1,8 @@
 
-module.exports = class Validator {
-throwExceptionFlag:boolean;
+export default class Validator {
 
 constructor(){
-this.throwExceptionFlag = false;
+
 }//const
 
 isNumber(no:number,shout=false,message="This is not a Number"){
@@ -40,9 +39,9 @@ isSmaller(smaller:number,bigger:number,shout=false,message="First Number is not 
         return true;
     }
 }//fn
-wholeNumber(no:number):number{
-    this.isNumber(no,true);
-return Number(no.toFixed(0));
+wholeNumber(no:number,shout=false):number{
+    this.isNumber(no,shout);
+return Number(Math.round(no));
 }
 isString(str:string,shout=false,message="This value is not string"){
     if (typeof str === 'string') {

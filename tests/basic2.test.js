@@ -1,4 +1,4 @@
-const Val = require("../src/index");
+const Val = require("../dist/ValidatorCjs");
 const val = new Val();
 // console.log(val);
 
@@ -9,7 +9,7 @@ expect(typeof b).toMatch('number');
 //.................................
 test('wholeNumber-Error', () => {
     expect(() => {
-        val.wholeNumber("abc");
+        val.wholeNumber("abc",true);
     }).toThrow('This is not a Number');
 });
 //....................is boolean....................................

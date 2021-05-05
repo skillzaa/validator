@@ -1,4 +1,4 @@
-const Val = require("../src/index");
+const Val = require("../dist/ValidatorCjs");
 const val = new Val();
 // console.log(val);
 
@@ -48,7 +48,7 @@ const b = val.isInteger(7.00);//7.00 = 7
 expect(b).toBeTruthy(); 
 });
 
-test('isNumber-03', () => {
+test('isInteger-03', () => {
     expect(() => {
       val.isInteger(5.420,true);
     }).toThrow('This is not an Integer');
